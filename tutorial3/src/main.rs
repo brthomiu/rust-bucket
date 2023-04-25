@@ -1,5 +1,7 @@
 // Data types
 
+use std::io;
+
 fn main() {
     // Integer
 
@@ -71,4 +73,44 @@ fn main() {
     // IE: this is an array of 5 i8s
 
     let _arr2: [i8; 5] = [1, 2, 3, 4, 5];
+
+
+
+// Additional notes about arithmetic operations with types
+
+// Different integer data types cannot be combined without specifying an implementation
+
+// Arithmetic operations will always return the same type as the inputs
+
+// IE: (a: i32 = 15) / (b: i32 = 10) = 1
+// A float cannot be returned from an integer operation so the decimals are dropped
+// This applies to all arithmetic operations (+, -, *, /, %)
+
+// Integer types can also be declared by appending the type at the end of the number
+// Underscores are ignored and can be used to organize integers
+
+let _int = 5_000_000_i64;
+
+let _int2 = 5_000_000_i32;
+
+// Use 'as' to cast integers to a different type
+
+let _int3 = _int + _int2 as i64;
+
+println!("{_int3}, {_int}");
+
+// It is not a good practice to cast integers down to smaller types because you can cause a memory overflow
+// Overflows will wrap and not necessarily throw an error, can break things in a non-obvious way
+
+let mut input = String::new();
+io::stdin().read_line(&mut input).expect("Could not read line");
+
+
+// Trim is a string method that removes the console input character (extra invisible character added by console input)
+// Parse will parse the string into an integer
+// Unwrap casts the integer to the specified type
+let int_input: i64 = input.trim().parse().unwrap();
+
+println!("{int_input}");
+
 }
